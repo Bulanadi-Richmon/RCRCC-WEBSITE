@@ -1578,7 +1578,7 @@ body:after {
   text-transform: uppercase; }
 
 .section-title {
-  color: #007bff;
+  color: #000000;
   font-size: 40px;
   font-weight: 900; }
   @media (max-width: 991.98px) {
@@ -1700,37 +1700,58 @@ body:after {
   -ms-transform: translateX(0%);
   transform: translateX(0%); }
 
-.custom-direction {
-  position: relative;
-  z-index: 99;
-  border-radius: 7px;
-  position: absolute;
-  right: -50px;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  display: inline-block;
-  background: #007bff; }
+  .custom-direction {
+    position: relative;
+    z-index: 99;
+    border-radius: 7px;
+    position: absolute;
+    right: -50px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-block;
+    background: #282936 ; /* Black background */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition */
+  }
+  
   @media (max-width: 991.98px) {
     .custom-direction {
       bottom: -25px;
       top: auto !important;
       right: 50% !important;
-      -webkit-transform: translateX(50%);
-      -ms-transform: translateX(50%);
-      transform: translateX(50%); } }
+      transform: translateX(50%);
+    }
+  }
+  
   .custom-direction a {
     padding: 10px 20px;
     display: inline-block;
-    color: #fff;
-    font-size: 1.5rem; }
-    .custom-direction a.custom-next > span > span {
-      position: relative;
-      display: inline-block;
-      -webkit-transform: rotate(-180deg);
-      -ms-transform: rotate(-180deg);
-      transform: rotate(-180deg); }
+    color: #fff; /* White text */
+    font-size: 1.5rem;
+    transition: color 0.3s ease-in-out;
+    text-decoration: none !important; /* Ensure no underline */
+  }
+  
+  .custom-direction a span {
+    display: inline-block;
+  }
+  
+  .custom-prev span span {
+    transform: rotate(0deg); /* Ensure the left arrow stays correct */
+  }
+  
+  .custom-next span span {
+    transform: rotate(180deg); /* Fix the next arrow to point right */
+  }
+  a:hover {
+    color: #ffffff; /* Change hover color to orange */
+  }
+  
+  .custom-direction a:hover {
+    color: #ffffff !important; /* Ensure the hover effect applies to arrows */
+  }
+  
+
+  
 
 /* Isotope*/
 .item {
@@ -1867,8 +1888,8 @@ body:after {
     -moz-animation: 1.6s ease infinite wheel-up-down;
     animation: 1.6s ease infinite wheel-up-down; }
   .mouse:hover .mouse-icon {
-    border-color: #ff5e00; 
-    background-color: #ff5e006c;
+    border-color: #ffffff; 
+    background-color: #ffffff6c;
   }
 
 @-webkit-keyframes wheel-up-down {

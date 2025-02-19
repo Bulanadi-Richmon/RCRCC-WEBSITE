@@ -20,3 +20,7 @@ $(document).ready(function(){
         }]
     });
 });
+
+document.getElementById('ctaButton').addEventListener('click', function() {
+    alert('Redirecting to account creation page...');
+});
