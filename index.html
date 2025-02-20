@@ -30,10 +30,17 @@
 
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="style.css" />
+
+    <link rel="stylesheet" href="video-css-js/style.css">
+    <script src="video-css-js/script.js"></script>
+
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
     <div id="overlayer"></div>
@@ -234,35 +241,32 @@
   </div>
 </section>
 
-
-      <!-- Fullscreen Video Section -->
-      <section class="video-section">
-        <div class="video-container">
-          <video class="background-video" muted playsinline id="mainVideo">
-            <source src="http://localhost/video/4.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
+    <section class="video-section" id="videoSection">
+      <div class="video-container">
+          <div class="video-overlay" id="videoOverlay">
+              <button id="playButton" class="overlay-play-button">
+                  <i class="fas fa-play"></i> <span class="button-text">Watch Now</span>
+              </button>
+          </div>
+          <video class="main-video" id="mainVideo" controls>
+              <source src="http://localhost/video/1.mp4" type="video/mp4">
+              Your browser does not support the video tag.
           </video>
-          <div class="video-overlay">
-            <h1 class="video-title">Experience the Future</h1>
-            <button class="play-btn" id="playMainBtn">▶ Watch Now</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- Mini Player -->
-      <div class="mini-player" id="miniPlayer">
-        <video class="mini-video" muted playsinline id="miniVideo">
-          <source src="http://localhost/video/4.mp4" type="video/mp4" />
-        </video>
-        <div class="mini-overlay">
-          <span class="mini-title">Now Playing</span>
-          <div class="progress-bar"><div class="progress" id="miniProgress"></div></div>
-          <div class="mini-controls">
-            <button class="play-pause-btn" id="playPauseMini">⏸</button>
-            <button class="close-btn" id="closeMini">✖</button>
-          </div>
-        </div>
       </div>
+    </section>
+
+    <!-- Mini-Player -->
+    <div class="mini-player" id="miniPlayer">
+      <video class="mini-video" id="miniVideo" muted></video>
+      <div class="mini-controls">
+          <button id="playPauseMini"><i class="fas fa-play"></i></button>
+          <button id="expandMini"><i class="fas fa-eject"></i></button>
+          <button id="closeMini"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="mini-progress-container">
+          <div class="mini-progress-bar" id="miniProgressBar"></div>
+      </div>
+    </div>
 
       <section
         class="site-section border-bottom bg-light"
@@ -1650,67 +1654,6 @@
         });
       });
     </script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const mainVideo = document.getElementById("mainVideo");
-    const miniPlayer = document.getElementById("miniPlayer");
-    const miniVideo = document.getElementById("miniVideo");
-    const playMainBtn = document.getElementById("playMainBtn");
-    const playPauseMini = document.getElementById("playPauseMini");
-    const closeMini = document.getElementById("closeMini");
-    const miniProgress = document.getElementById("miniProgress");
-
-    playMainBtn.addEventListener("click", () => {
-      mainVideo.muted = false;
-      mainVideo.play();
-      miniVideo.play();
-      showMiniPlayer();
-    });
-
-    mainVideo.addEventListener("play", () => {
-      miniVideo.currentTime = mainVideo.currentTime;
-      miniVideo.play();
-      showMiniPlayer();
-    });
-
-    mainVideo.addEventListener("pause", hideMiniPlayer);
-    mainVideo.addEventListener("ended", hideMiniPlayer);
-
-    // Sync Mini Video Progress
-    function updateProgress() {
-      const progress = (miniVideo.currentTime / miniVideo.duration) * 100;
-      miniProgress.style.width = progress + "%";
-    }
-
-    miniVideo.addEventListener("timeupdate", updateProgress);
-
-    // Play/Pause Button
-    playPauseMini.addEventListener("click", () => {
-      if (miniVideo.paused) {
-        miniVideo.play();
-        playPauseMini.textContent = "⏸";
-      } else {
-        miniVideo.pause();
-        playPauseMini.textContent = "▶";
-      }
-    });
-
-    // Close Mini Player
-    closeMini.addEventListener("click", hideMiniPlayer);
-
-    function showMiniPlayer() {
-      miniPlayer.style.opacity = "1";
-      miniPlayer.style.transform = "scale(1)";
-    }
-
-    function hideMiniPlayer() {
-      miniPlayer.style.opacity = "0";
-      miniPlayer.style.transform = "scale(0)";
-      miniVideo.pause();
-    }
-  });
-</script>
 
     <!-- Load Latest jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
